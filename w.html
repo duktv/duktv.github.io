@@ -1,1 +1,37 @@
-gy
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Button</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+<button id="shareBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">
+	Chia sẻ
+</button>
+
+<script>
+const shareBtn = document.getElementById('shareBtn');
+
+shareBtn.addEventListener('click', async () => {
+	if (navigator.share) {
+		try {
+			await navigator.share({
+				title: document.title,
+				text: 'Xem nội dung này nhé!',
+				url: window.location.href
+			});
+			console.log('Chia sẻ thành công');
+		} catch (err) {
+			console.error('Chia sẻ thất bại:', err);
+		}
+	} else {
+		alert('Trình duyệt của bạn không hỗ trợ chia sẻ');
+	}
+});
+</script>
+
+</body>
+</html>
